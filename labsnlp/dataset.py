@@ -76,7 +76,7 @@ class SentenceDataset(Dataset):
                     self.word_vectors[self.word2idx[word]]
                 )
         
-        vectors = np.stack(vectors)
+        vectors = np.stack(vectors)     # (n_words, 50)
 
         vectors = torch.from_numpy(vectors).to(dtype=torch.float)
         classes = torch.from_numpy(classes).to(dtype=torch.float)
@@ -94,4 +94,5 @@ if __name__ == "__main__":
         embeddings_file='../data/glove.6B/glove.6B.50d.txt'
     )
 
+    print(len(s))
     print(s[0])

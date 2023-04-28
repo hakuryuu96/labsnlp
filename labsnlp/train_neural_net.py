@@ -53,11 +53,11 @@ def train():
     for epoch in range(N_EPOCHS): 
         print(f'Epoch {epoch}...') 
         print('--> Training...')
-        for element in tqdm.tqdm(train_dataloader):
+        for batch in tqdm.tqdm(train_dataloader):
             model.zero_grad()
 
-            sentence = element['word_vectors']
-            classes = element['classes']
+            sentence = batch['word_vectors']
+            classes = batch['classes']
             pred_classes = model(sentence)
 
             loss = loss_function(pred_classes, classes)
@@ -106,6 +106,13 @@ def prepare_submission():
         hidden_dim = HIDDEN_DIM,
     )
     model.load_state_dict(state_dict)
+
+    print(state_dict)
+    
+    # model.eval()
+
+    # with torch.no_grad():
+        # ...
 
     # ...
 
